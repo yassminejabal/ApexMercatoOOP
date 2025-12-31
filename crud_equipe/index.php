@@ -1,7 +1,6 @@
 <?php
 include "../databese.php";
-include "../INTERFACE.php";
-include "../trait.php";
+include_once "../trait.php";
 // echo "wdefv";
 
 // if($connection){
@@ -36,7 +35,7 @@ class equipe
     private ?string $badget;
     public $connection;
 
-    function __construct($name, $manager_name, $badget,$connection)
+    function __construct($name, $manager_name, $badget, $connection)
     {
         $this->connection = $connection;
         $this->name = $name;
@@ -73,31 +72,32 @@ class equipe
 
 
 
-    public function Ajouter() {
+    public function Ajouter()
+    {
         $sql = "INSERT INTO equipe(name,manager_name,badget) VALUES(:name,:manager_name,:badget)";
-       $prepare = $this->connection->prepare($sql);
+        $prepare = $this->connection->prepare($sql);
         $prepare->execute(array(
-            ':name'=>$this->name,
-            ':manager_name'=>$this->manager_name,
-            ':badget'=>$this->badget
+            ':name' => $this->name,
+            ':manager_name' => $this->manager_name,
+            ':badget' => $this->badget
         ));
     }
- 
 }
 
-if($_SERVER['REQUEST_METHOD']=="POST"){
-$name = $_POST['name'];
-echo $name;
-$tb_equipe = 'equipe';
-$manager_name = $_POST['manager_name'];
-$badget = $_POST['badget'];
-$newequipe = new equipe($name,$manager_name,$badget,$connection);
-$newequipe->Ajouter();
-$newequipe->afficher($tb_equipe,$connection);
-var_dump($newequipe->afficher($tb_equipe,$connection));
-    
-    
-    }
- else{
-     echo "eroor dans crud equipe dans data pas submit";
- }
+
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $name = $_POST['name'];
+    echo $name;
+    $tb_equipe = 'equipe';
+    $manager_name = $_POST['manager_name'];
+    $badget = $_POST['badget'];
+    $newequipe = new equipe($name,$manager_name,$badget, $connection);
+    $newequipe->Ajouter();
+
+    header("Location:afficher_Equipe.php");
+
+} else {
+    echo "eroor dans crud equipe dans data pas submit";
+}
+?>
