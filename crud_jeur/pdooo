@@ -1,0 +1,99 @@
+<?php
+$host = 'localhost';
+$dbname = 'apexmercato';
+$user = 'root';
+$pass = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connexion réussie !";
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+}
+?>
+<?php
+$host = 'localhost';
+$dbname = 'apexmercato';
+$user = 'root';
+$pass = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connexion réussie !";
+} catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+}
+?>
+
+
+
+<?php
+$sql = "SELECT * FROM players";
+$stmt = $pdo->query($sql);
+$players = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach($players as $player) {
+    echo $player['name'] . " - " . $player['role'] . "<br>";
+}
+?>
+
+
+
+<?php
+$sql = "INSERT INTO players (name, role, email) VALUES (:name, :role, :email)";
+$stmt = $pdo->prepare($sql);
+
+$stmt->execute([
+    ':name' => 'Messi',
+    ':role' => 'Attaquant',
+    ':email' => 'messi@fcapex.com'
+]);
+?>
+
+
+
+<?php 
+// UPDATE
+$sql = "UPDATE players SET role = :role WHERE id = :id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':role' => 'Milieu', ':id' => 5]);
+
+// DELETE
+$sql = "DELETE FROM players WHERE id = :id";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([':id' => 5]);
+
+
+
+?>
+<?php 
+
+try {
+    $pdo->beginTransaction();
+
+    // Débit de l'équipe A
+    $pdo->prepare("UPDATE teams SET budget = budget - :amount WHERE id = :id")
+        ->execute([':amount' => 1000000, ':id' => 1]);
+
+    // Crédit de l'équipe B
+    $pdo->prepare("UPDATE teams SET budget = budget + :amount WHERE id = :id")
+        ->execute([':amount' => 1000000, ':id' => 2]);
+
+    // Changer l'équipe du joueur
+    $pdo->prepare("UPDATE players SET equipe_idA = :equipe WHERE id = :player")
+        ->execute([':equipe' => 2, ':player' => 3]);
+
+    $pdo->commit();
+    echo "Transfert réussi !";
+} catch (Exception $e) {
+    $pdo->rollBack();
+    echo "Erreur lors du transfert : " . $e->getMessage();
+}
+
+
+
+
+
+?>

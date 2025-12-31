@@ -1,0 +1,72 @@
+Admin
+
+Peut voir :
+
+Tous les détails : nom, pseudo, nationalité, rôle, équipe actuelle
+
+Salaire des joueurs et coachs
+
+Clause de rachat
+
+Budget des équipes
+
+Contrats
+
+Transferts
+
+Peut faire :
+
+Créer, modifier ou supprimer joueurs et coachs
+
+Créer, modifier ou supprimer équipes
+
+Gérer les contrats
+
+Déclencher des transferts
+
+
+
+
+Journaliste
+
+Peut voir :
+
+Nom, pseudo, nationalité, rôle, équipe actuelle
+
+Salaire des joueurs et coachs
+
+Clause de rachat
+
+Budget des équipes
+
+Historique complet des transferts
+
+Peut faire :
+
+Lecture seule uniquement
+
+Analyser et comparer joueurs ou coachs via polymorphisme
+
+Filtrer et exporter des données (ex: avec JavaScript)
+
+
+
+Visiteur / Utilisateur normal
+
+Peut voir :
+
+Nom, pseudo, nationalité, rôle
+
+Équipe actuelle
+
+Historique public limité (transferts terminés sans détails financiers)
+
+Peut faire :
+
+Lecture seule
+
+Consulter le marché et les profils publics
+
+Rechercher un joueur ou une équipe
+
+Consulter l’historique public limité
