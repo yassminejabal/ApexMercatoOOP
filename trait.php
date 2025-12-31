@@ -1,18 +1,12 @@
 <?php
 include "databese.php";
 
-class Crud{
+trait Crd{
     public function afficher($tableau,$connection){
         $sql = "SELECT * FROM $tableau";
         $prepare = $connection->prepare($sql);
-        $arrayreturn = $connection->execute($prepare);
-        return $arrayreturn->fetch_all(MYSQLI_ASSOC);
+        $prepare->execute();
+        return $prepare->fetchAll(PDO::FETCH_ASSOC);
     }
 }
-
-
-
-
-
-
 ?>

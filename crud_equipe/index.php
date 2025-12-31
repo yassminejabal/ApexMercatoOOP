@@ -1,6 +1,7 @@
 <?php
 include "../databese.php";
 include "../INTERFACE.php";
+include "../trait.php";
 // echo "wdefv";
 
 // if($connection){
@@ -27,16 +28,13 @@ include "../INTERFACE.php";
 // else{
 //     echo "eroor dans crud equipe dans data makatjix mn page de formulaire dyal create equipe";
 // }
-class equipe implements crud
+class equipe
 {
-
-    private string $name;
-    private string $manager_name;
-    private string $badget;
+    use Crd;
+    private ?string $name;
+    private ?string $manager_name;
+    private ?string $badget;
     public $connection;
-
-
-
 
     function __construct($name, $manager_name, $badget,$connection)
     {
@@ -84,17 +82,21 @@ class equipe implements crud
             ':badget'=>$this->badget
         ));
     }
-    public function modifier() {}
-    public function delete() {}
-    public function afficher() {}
+ 
 }
+
 if($_SERVER['REQUEST_METHOD']=="POST"){
 $name = $_POST['name'];
 echo $name;
+$tb_equipe = 'equipe';
 $manager_name = $_POST['manager_name'];
 $badget = $_POST['badget'];
 $newequipe = new equipe($name,$manager_name,$badget,$connection);
 $newequipe->Ajouter();
+$newequipe->afficher($tb_equipe,$connection);
+var_dump($newequipe->afficher($tb_equipe,$connection));
+    
+    
     }
  else{
      echo "eroor dans crud equipe dans data pas submit";

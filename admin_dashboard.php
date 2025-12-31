@@ -15,6 +15,7 @@
     <a href="joueur.php">Ajouter Joueur</a>
     <a href="equipe.php">Gérer Équipes</a>
     <a href="process_transfer.php">Transfert</a>
+    <a href="afficher_Equipe">Les Equipes</a>
     <a href="logout.php">Déconnexion</a>
   </nav>
 
