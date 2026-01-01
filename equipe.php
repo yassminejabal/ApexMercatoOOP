@@ -37,6 +37,7 @@
       <a href="index.php">Accueil</a>
       <a href="admin_dashboard.php">Dashboard</a>
       <a href="logout.php">Déconnexion</a>
+      <a href="crud_equipe/afficher_Equipe.php">Tous les l'équipe </a>
     </nav>
   </header>
 

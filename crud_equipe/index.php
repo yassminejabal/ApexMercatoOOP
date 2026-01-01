@@ -1,32 +1,8 @@
 <?php
 include "../databese.php";
+// include_once "../equipe.php";
 include_once "../trait.php";
-// echo "wdefv";
 
-// if($connection){
-//     echo "true";
-// }
-// else{
-//     echo "false";
-// }
-// var_dump($_POST);
-
-
-// if($_SERVER['REQUEST_METHOD']=='POST'){
-//     $name = $_POST['name'];
-//     $manager_name = $_POST['manager_name'];
-//     $badget = $_POST['badget'];
-//     $sql = "INSERT INTO equipe(name,manager_name,badget) VALUES(:name,:manager_name,:badget)";
-//     $pr = $connection->prepare($sql);
-//     $pr->execute([
-//         ':name'=>$name,
-//         ':manager_name'=>$manager_name,
-//         ':badget'=>$badget
-//     ]);
-// }
-// else{
-//     echo "eroor dans crud equipe dans data makatjix mn page de formulaire dyal create equipe";
-// }
 class equipe
 {
     use Crd;
@@ -82,6 +58,9 @@ class equipe
             ':badget' => $this->badget
         ));
     }
+    public function getAll() {
+        return $this->afficher('equipe', $this->connection);
+    }
 }
 
 
@@ -89,15 +68,11 @@ class equipe
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $name = $_POST['name'];
     echo $name;
-    $tb_equipe = 'equipe';
     $manager_name = $_POST['manager_name'];
     $badget = $_POST['badget'];
-    $newequipe = new equipe($name,$manager_name,$badget, $connection);
+    $newequipe = new equipe($name, $manager_name, $badget, $connection);
     $newequipe->Ajouter();
 
-    header("Location:afficher_Equipe.php");
 
-} else {
-    echo "eroor dans crud equipe dans data pas submit";
+    header("Location:afficher_Equipe.php");
 }
-?>
