@@ -1,6 +1,8 @@
 <?php
 include_once "../databese.php";
 include_once "index.php";
+// include "../headerEquipe.html";
+
 $newequip = new equipe(null,null,null, $connection);
 $data = $newequip->getAll();
     
@@ -157,11 +159,50 @@ footer {
   .team-name { font-size: 20px; }
   .team-badge { font-size: 28px; padding: 6px 12px; }
 }
+/* ===== Header ===== */
+header {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  padding: 40px 0;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
+}
 
+header .container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+header h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+header p {
+  font-size: 18px;
+  margin-top: 10px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
 
   </style>
 </head>
 <body>
+      <header>
+    <h1>ApexMercato Admin</h1>
+    <nav>
+      <a href="../index.php">Accueil</a>
+      <a href="../admin_dashboard.php">Dashboard</a>
+      <a href="logout.php">Déconnexion</a>
+      <!-- <a href="crud_equipe/afficher_Equipe.php">Tous les l'équipe </a> -->
+    </nav>
+  </header>
+
 <main class="container">
   <h1>🏆 Liste des équipes</h1>
   
@@ -169,6 +210,7 @@ footer {
     <?php foreach($data as $row){ ?>
       <div class="team-card">
         <div class="team-info">
+            <h3 class="team-name"><?=$row['id'] ?></h3>
           <h3 class="team-name"><?=$row['name'] ?></h3>
           <h4 class="manager-name">Manager: <?=$row['manager_name'] ?></h4>
         </div>

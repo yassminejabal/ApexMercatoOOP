@@ -38,6 +38,8 @@
       <a href="admin_dashboard.php">Dashboard</a>
       <a href="logout.php">Déconnexion</a>
       <a href="crud_equipe/afficher_Equipe.php">Tous les l'équipe </a>
+      <a href="crud_equipe/modifierBudger.php">Modifier badget</a>
+
     </nav>
   </header>
 

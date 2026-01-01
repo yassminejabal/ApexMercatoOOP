@@ -2,16 +2,18 @@
 include "../databese.php";
 // include_once "../equipe.php";
 include_once "../trait.php";
+include "../traitModifierBadget.PHP";
 
 class equipe
 {
     use Crd;
+    use newbadget;
     private ?string $name;
     private ?string $manager_name;
     private ?string $badget;
     public $connection;
 
-    function __construct($name, $manager_name, $badget, $connection)
+    function __construct($name, $manager_name, $badget,$connection)
     {
         $this->connection = $connection;
         $this->name = $name;
@@ -61,6 +63,9 @@ class equipe
     public function getAll() {
         return $this->afficher('equipe', $this->connection);
     }
+    
+
+
 }
 
 
