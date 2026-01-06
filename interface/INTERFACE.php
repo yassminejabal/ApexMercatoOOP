@@ -2,8 +2,6 @@
 interface crud{
     public function Ajouter();
     public function modifier();
-    public function delete();
-    public function afficher();
-
-
+    public function delete():bool;
+    public function afficher():array;
 }

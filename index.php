@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-    <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="css.css">
 
 </head>
+
 <body>
-    
+
 
   <header>Login</header>
 
@@ -34,4 +36,5 @@
   </footer>
 
 </body>
+
 </html>

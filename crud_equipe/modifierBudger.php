@@ -1,6 +1,9 @@
 <?php
-include "../databese.php";
-include "../traitModifierBadget.PHP";
+
+include "../interface/INTERFACE.PHP";
+// include_once "../databese.php";
+// include "../Crud/equipe.php";
+include "../Class/equipee.php";
 ?>
 
 
@@ -331,7 +334,7 @@ include "../traitModifierBadget.PHP";
 </style>
 
 <body>
-    <form action="  " method="POST">
+    <form action="" method="POST">
         <div class="form-group">
             <label for="team-name">enter id de l'équipe</label>
             <input type="text" id="team-name" name="id" placeholder="Entrez le id de l'équipe">
@@ -348,18 +351,16 @@ include "../traitModifierBadget.PHP";
 </body>
 
 </html>
-
 <?php
-$id = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
     $newbadge = $_POST['badge'];
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
     if (empty($id) || empty($newbadge)) {
         exit();
     }
     else{
-
-        modoferbadget($id,$newbadge,$connection);
+        $newequipe = new equipe($connection);
+        $newequipe->modoferbadget($id,$newbadge,$connection);
     }
 }
 ?>

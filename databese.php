@@ -1,37 +1,31 @@
 <?php
-// class Database
-// {
 
-//     private static ?Database $instance = null;
+class DataBases {
+    public static string $servername = "localhost";
+    public static string $username   = "root";
+    public static string $dbName     = "apexmercato_oop_php";
+    public static string $password   = "";
+    public static ?PDO $connection = null;
 
-//     private ?PDO $pdo;
+    public static function ConnexionDataBase() {
+        if (!self::$connection) {
+            try {
+                self::$connection = new PDO(
+                    "mysql:host=" . self::$servername . ";dbname=" . self::$dbName . ";charset=utf8mb4",
+                    self::$username,
+                    self::$password
+                );
+                self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-// //----change this to fit your database----
-//     private string $host = "db";
-//     private string $username = "apex";
-//     private string $password = "apex";
-//     private string $dbname = "apex_manager";
-// //----change this to fit your database----
+            } catch (PDOException $e) {
+                die("Connection failed: " . $e->getMessage());
+            }
+        }
+        return self::$connection;
+    }
+}
 
-//     private function __construct()
-//     {
-//         $dataSourceName = "mysql:host={$this->host};dbname={$this->dbname};setcar=utf8mb4";
-//         $this->pdo = new PDO($dataSourceName, $this->username, $this->password);
-//         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-//     }
+$connection= DataBases::ConnexionDataBase();
 
-//     public static function getInstance(): Database
-//     {
-//         if (!self::$instance) {
-//             self::$instance = new Database;
-//         }
-//         return self::$instance;
-//     }
-//     public function getConnection(): PDO
-//     {
-//         return $this->pdo;
-//     }
-// }
-
-
-$connection = new PDO("mysql:host=localhost;dbname=apexmercato_oop_php;charset=utf8mb4",'root','');
+?>

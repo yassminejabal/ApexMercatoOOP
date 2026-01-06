@@ -1,12 +1,15 @@
 <?php
-if ($_SERVER['REQUEST_METHOD']=='POST') {
-    $name=$_POST['name'];
-    
-}
-trait newbadget{
-    public function modoferbadget($id,$newbadget,$connection){
-        $sql = "UPDATE equipe SET badget=$newbadget WHERE id = $id";
-        $connection->query($sql);
-    }
-}
+
+// trait newbadget{
+//     public function modoferbadget($id,$badget,$connection){
+//         $sql = "UPDATE equipe SET badget=:badget WHERE id = :id";
+//         $stmt = $connection->prepare($sql);
+//         return $stmt->execute([
+//             ':id'=>$id,
+//             ':badget'=>$badget            
+//         ]);
+//     }
+// }
 ?>
+
+

@@ -1,5 +1,4 @@
 <?php
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -22,8 +21,7 @@
       <a href="logout.php">Déconnexion</a>
       <a href="crud_equipe/afficher_Equipe.php">Tous les l'équipe </a>
       <a href="crud_equipe/modifierBudger.php">Modifier badget</a>
-      <a href="coatch/coatch.php">Ajouter un coutch A une equipe</a>
-      <a href="coatch/affichagecoutch.php">afficher les coatch</a>
+      <a href="crud_equipe/coatch.php">Ajouter un coutch A une equipe</a>
 
     </nav>
   </header>
@@ -62,4 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     $newequipe->Ajouter();
     header("Location:afficher_Equipe.php");
-} ?>
+}
+
+
+?>
