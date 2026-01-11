@@ -1,12 +1,9 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>Admin ApexMercato</title>
-    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="../css.css">
 
   <style>
     
@@ -18,18 +15,18 @@
     <h1>ApexMercato Admin</h1>
     <nav>
       <a href="index.php">Accueil</a>
-      <a href="admin_dashboard.php">Dashboard</a>
+      <a href="/html/admin_dashboard.php">Dashboard</a>
       <a href="logout.php">Déconnexion</a>
-      <a href="crud_equipe/afficher_Equipe.php">Tous les l'équipe </a>
-      <a href="crud_equipe/modifierBudger.php">Modifier badget</a>
-      <a href="coatch/coatch.php">Ajouter un coutch A une equipe</a>
-      <a href="coatch/affichagecoutch.php">afficher les coatch</a>
+      <a href="../crud_equipe/afficher_Equipe.php">Tous les l'équipe </a>
+      <a href="../crud_equipe/modifierBudger.php">Modifier badget</a>
+      <a href="../coatch/coatch.php">Ajouter un coutch A une equipe</a>
+      <a href="../coatch/affichagecoutch.php">afficher les coatch</a>
 
     </nav>
   </header>
 
   <main>
-    <form action="crud_equipe/ajouteEquipe.php" method="POST">
+    <form action="../crud_equipe/ajouteEquipe.php" method="POST">
       <h2>Gérer une Équipe</h2>
 
       <label for="name">Nom de l'équipe :</label>
@@ -52,14 +49,3 @@
 </body>
 </html>
 <?php 
-//  echo equipe::$name;
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    $name = $_POST['name'];
-    $manager_name = $_POST['manager_name'];
-    $badget = $_POST['badget'];
-    $newequipe = new equipe($connection,$name, $manager_name, $badget);
-   
-    
-    $newequipe->Ajouter();
-    header("Location:afficher_Equipe.php");
-} ?>

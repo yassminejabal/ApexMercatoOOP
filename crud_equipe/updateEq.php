@@ -1,12 +1,16 @@
 <?php
-include "../interface/INTERFACE.PHP";
-// include_once "../databese.php";
-// include "../Crud/equipe.php";
-include "../Class/equipee.php";
+namespace OOP2\crud_equipe;
+include "../autoloding.php";
+use OOP2\lesclass\equipe;
+use OOP2\Databese;
+$connection = databese::ConnexionDataBase();
+
 
 
 if (isset($_GET['id'])) {
+    session_start();
     $id = $_GET['id'];
+    $_SESSION['id']=$_GET['id'];
 } else {
     header("Location:afficher_Equipe.php");
 }
@@ -95,7 +99,7 @@ $data = $newequipe->GetDatadeUpdate();
         transform: scale(1.03);
     }
 </style>
-<form action="" method="POST">
+<form action="UPDATE.php" method="POST">
 
     <h2>Modifier l'Équipe</h2>
 
@@ -118,16 +122,5 @@ $data = $newequipe->GetDatadeUpdate();
     <button type="submit" name="submit">Modifier l'équipe</button>
 </form>
 <?php
-if($_SERVER['REQUEST_METHOD']==='POST'){
-    $name =  $_POST['name'];
-    $manager_name =  $_POST['manager_name'];
-    $badget= $_POST['badget'];
-    $id;
 
-    $newequipe = new equipe($connection,$name,$manager_name,$badget,$id);
-    $ret = $newequipe->modifier();
-    if(isset($ret)){
-    header("Location: afficher_Equipe.php");
-    }
-}
 

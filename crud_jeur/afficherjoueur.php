@@ -1,5 +1,10 @@
 <?php
-include "../Class/joueur.php";
+namespace OOP2\crud_jeur;
+require '../autoloding.php';
+use OOP2\Databese;
+$connection= databese::ConnexionDataBase();
+use OOP2\lesclass\joueur;
+
 
 
 ?>
@@ -97,6 +102,7 @@ $data = $newcoatch->afficher();
       <th>Équipe</th>
       <th>Salaire</th>
       <th>valeur_marcher</th>
+      <th>DELETE</th>
     </tr>
   </thead>
   <tbody>
@@ -110,7 +116,8 @@ $data = $newcoatch->afficher();
       <td><?=$raw['nationalite']  ?></td>
       <td><?=$raw['equipe_idA']  ?></td>
       <td><?=$raw['Salaire']  ?></td>
-      <td><?=$raw['valeur_marcher']  ?></td>
+      <td><?=$raw['valeur_marcher'] ?></td>
+      <td><a href="deleteJoueur.php?id=<?= $raw['id'] ?>">delete</a></td>
 
     </tr>
     <?php } ?>

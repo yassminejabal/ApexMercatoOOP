@@ -1,9 +1,11 @@
 <?php
+namespace OOP2\crud_equipe;
+include "../autoloding.php";
+use OOP2\lesclass\equipe;
+use OOP2\Databese;
+$connection = databese::ConnexionDataBase();
 
-include "../interface/INTERFACE.PHP";
-// include_once "../databese.php";
-// include "../Crud/equipe.php";
-include "../Class/equipee.php";
+
 ?>
 
 

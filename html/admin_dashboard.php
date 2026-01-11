@@ -1,14 +1,18 @@
 <?php
-// include "databese.php";
-include "Class/joueur.php";
+namespace OOP2\html;
+include "../autoloding.php";
+use OOP2\Databese;
+use OOP2\lesclass\joueur;
+$connection = databese::ConnexionDataBase();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8">
   <title>Admin Dashboard - ApexMercato</title>
-  <link rel="stylesheet" href="css.css">
+  <link rel="stylesheet" href="../css.css">
 
 </head>
 
@@ -18,11 +22,11 @@ include "Class/joueur.php";
 
   <nav>
     <a href="admin_dashboard.php">Accueil</a>
-    <a href="crud_jeur/joueur.php">Ajouter Joueur</a>
+    <a href="../crud_jeur/joueur.php">Ajouter Joueur</a>
     <a href="equipe.php">Gérer Équipes</a>
-    <a href="transfer.php">Transfert</a>
-    <a href="crud_equipe/afficher_Equipe.php">Les Equipes</a>
-    <a href="logout.php">Déconnexion</a>
+    <!-- <a href="../transforme/transfert.php">Transfert</a> -->
+    <a href="../crud_equipe/afficher_Equipe.php">Les Equipes</a>
+    <a href="../logout.php">Déconnexion</a>
   </nav>
 
   <main>
@@ -39,11 +43,9 @@ include "Class/joueur.php";
         </tr>
       </thead>
       <tbody>
-        <?php 
+        <?php
         $newJoueur= new joueur($connection);
         $newJoueur->afficherDACHBORD();
-        
-        
         ?>
       </tbody>
     </table>

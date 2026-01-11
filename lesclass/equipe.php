@@ -1,5 +1,10 @@
 <?php
-include "../databese.php";
+
+namespace OOP2\lesclass;
+
+use OOP2\InterfaceFolder\crud;
+use PDO;
+
 class equipe implements crud
 {
     public $id;
@@ -138,8 +143,99 @@ class equipe implements crud
     {
         $connection = $this->connection;
         $id = $this->id;
-        $stmt = $connection->prepare("SELECT * FROM equipe WHERE id = :id");
-        $stmt->execute([':id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $F = $connection->prepare("SELECT * FROM equipe WHERE id = :id");
+        $F->execute([':id' => $id]);
+        return $F;
     }
+    public static function getbedgetequipe($connection, $Joueur_id): array
+    {
+        $sql = "SELECT badget FROM `equipe` WHERE id = :Joueur_id";
+        $pre = $connection->prepare($sql);
+        $pre->execute([
+            ':Joueur_id' => $Joueur_id
+        ]);
+        return $pre->fetch(PDO::FETCH_ASSOC);
+    }
+    public static function getidjoueur($connection, $name)
+    {
+        $sql = "SELECT id FROM equipe WHERE name = :name";
+        $res = $connection->prepare($sql);
+        $res->execute([
+            ':name' => $name
+        ]);
+        $fetc =  $res->fetch(PDO::FETCH_ASSOC);
+        return $fetc['equipe_idA'];
+    }
+
+    public static function getequipe_idADEjoueur($connection, $Joueur_id)
+    {
+        $sql = "SELECT equipe_idA FROM joueur WHERE id = $Joueur_id";
+        $res = $connection->query($sql);
+        $resfetch = $res->fetchAll(PDO::FETCH_ASSOC);
+        return $resfetch;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static function getbedjetequipeB($connection, $equipe_idB): array
+    {
+        $sql = "SELECT badget FROM `equipe` WHERE id = :equipe_idB";
+        $prepare = $connection->prepare($sql);
+        $prepare->execute([
+            ':equipe_idB' => $equipe_idB
+        ]);
+        return $prepare->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // public static function comprerbudgetANDmontant($bedgetd,$montantJoueur){
+
+
+
+    // }
+
+
+
+
+
+
 }

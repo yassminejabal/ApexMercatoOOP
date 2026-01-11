@@ -1,7 +1,14 @@
 <?php
-include_once "databese.php";
-?>
+namespace OOP2\html;
+session_start();
+require_once "../autoloding.php";
+use OOP2\lesclass\transfert;
+use OOP2\Databese;
+use OOP2\lesclass\equipe;
+use OOP2\lesclass\joueur;
 
+$connection = databese::ConnexionDataBase();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +16,63 @@ include_once "databese.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<style>
+    <style>
+    body {
+        background: #0a1f44;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .joueur-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 360px;
+        padding: 18px 25px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #0d6efd, #003f88);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    /* hover animation */
+    .joueur-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* NAME (left) */
+    .joueur-name {
+        font-size: 20px;
+        font-weight: 600;
+        color: #ffffff;
+        letter-spacing: 1px;
+    }
+
+    /* EQUIPE (right) */
+    .joueur-equipe {
+        font-size: 14px;
+        font-weight: 500;
+        color: #0d6efd;
+        background: #ffffff;
+        padding: 6px 14px;
+        border-radius: 20px;
+        transition: transform .3s ease, background .3s ease;
+    }
+
+    /* hover equipe */
+    .joueur-card:hover .joueur-equipe {
+        background: #dbe9ff;
+        transform: scale(1.1);
+    }
+
+
+
+
+
     /* ===== Formulaire de transfert ===== */
     .transfer-form {
         width: 100%;
@@ -215,79 +277,58 @@ include_once "databese.php";
         }
     }
 </style>
+</head>
+
 <?php
-$sql = "SELECT id,name FROM joueur";
-$resultJ = $connection->query($sql);
-$ssql = "SELECT id,name FROM equipe";
-$resultE = $connection->query($ssql);
-$ss = "SELECT id,name FROM equipe";
-$resultE2 = $connection->query($ss);
-$error = '';
+
+?>
+<?php
+
+$resultE2 = transfert::getidnamedeselectequipe($connection);
+
 ?>
 
+<?php
+$id = $_GET['id'];
+
+$_SESSION['Joueur_id'] = $id;
+
+
+
+?>
 
 <body>
-    <form method="POST" action="" class="transfer-form">
+    <form method="POST" action="DataTransformeJoueur.php" class="transfer-form">
         <h2>Transfert de joueur</h2>
-
-
         <?php
-        if (isset($_POST['submit'])) {
-            if ($_POST['teamB_id'] === $_POST['teamA_id']) {
-
-                $error = " L'équipe actuelle et la nouvelle équipe ne peuvent pas être identiques."; ?>
-
-
-            <?php } ?>
-            <?php $Joueur_id = $_POST['Joueur_id'];
-            $teamA_id = $_POST['teamA_id'];
-            $teamB_id = $_POST['teamB_id'];
-            $sqll = "INSERT INTO transfert(equipe_idA,equipe_idB,Joueur_id,coatch_id) VALUES(:equipe_idA,:equipe_idB,:Joueur_id,:coatch_id)";
-
-
-
-            ?>
-        <?php } ?>
-
+        $nameAndequipe = joueur::getnameANDequipejoueur($id,$connection);
+        ?>
 
         <label>Joueur</label>
-        <select name="Joueur_id" required>
-            <option value="">-- Sélectionner --</option>
-            <?php foreach ($resultJ as $joueur) { ?>
-                <option value="<?= $joueur['id'] ?>"><?= $joueur['name'] ?></option>
+        <?php 
+        // session_start();
+        // $_SESSION['Joueur_id']=
+        ?> 
+
+        <?php foreach ($nameAndequipe as $elment) { ?>
+            <div class="joueur-card">
+                <div class="glow"></div>
+                <span class="joueur-name" name="name">Name:<?= $elment['name'] ?></span>
+                <span class="joueur-equipe" name="equipe_idA">EQuipe:<?= $elment['equipe_idA'] ?></span>
+            </div>
             <?php } ?>
-        </select>
-        <?php if ($error) ?>
-
-        <div class="form-error"><?php echo $error ?></div>
-
-        <?php ?>
 
         <label>Nouvelle équipe</label>
 
-
-        <select name="teamA_id" required>
+        <select name="teamB_id" required>
             <option value="">-- Équipe destination --</option>
             <?php foreach ($resultE2 as $equipe) { ?>
                 <option value=" <?= $equipe['id'] ?>"><?= $equipe['name'] ?></option>
             <?php } ?>
         </select>
 
-
-
-        <label>Équipe actuelle</label>
-
-        <select name="teamB_id" required>
-            <option value="">-- Équipe source --</option>
-            <?php foreach ($resultE as $equipea) { ?>
-                <option value=" <?= $equipea['id'] ?>"><?= $equipea['name'] ?></option>
-            <?php } ?>
-        </select>
-
-
         <label>Montant du transfert (€)</label>
         <input type="number" name="price" required>
-
         <button type="submit" name="submit">Valider le transfert</button>
     </form>
 

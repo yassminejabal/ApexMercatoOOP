@@ -1,6 +1,8 @@
 <?php
-
-class DataBases {
+namespace OOP2;
+use PDO;
+use PDOException;
+class databese {
     public static string $servername = "localhost";
     public static string $username   = "root";
     public static string $dbName     = "apexmercato_oop_php";
@@ -26,6 +28,6 @@ class DataBases {
     }
 }
 
-$connection= DataBases::ConnexionDataBase();
+$connection= databese::ConnexionDataBase();
 
 ?>

@@ -1,31 +1,18 @@
 <?php
-// include "index.php";
-// class chechselect{
-//     public function chech($select){
-//         if($select = 'journaliste'){
-
-//         }
-//          if($select = 'admin') {
-
-            
-//         }
-//     }
-//   }  
-
-if($_SERVER['REQUEST_METHOD']='POST'){
+session_start();
+if($_SERVER['REQUEST_METHOD']==='POST'){
     if($_POST["role"]=='journaliste'){
-        header("Location:journalist_view.php");
+        $_SESSION['role'] = 'journaliste';
+        header("Loction");
+        // header("Location:html/journalist_view.php");
     }
     if($_POST["role"]=='admin'){
-        header("Location:admin_dashboard.php");
+        // header("Location:html/admin_dashboard.php");
+        $_SESSION['role'] = 'admin';
+    }
+        if($_POST["role"]=='visiteur'){
+        // header("Location:html/visiteur.php");
+        $_SESSION['role'] = 'visiteur';
     }
 }
-
-
-
-
-
-
-
-
 ?>

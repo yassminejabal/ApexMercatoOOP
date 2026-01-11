@@ -1,12 +1,17 @@
 <?php
-include "../interface/INTERFACE.PHP";
-// include_once "../databese.php";
-// include "../Crud/coatch.php";
-include "../Class/coatch.php";
-// include "../Class/Person.php";
+
+namespace OOP2\coatch;
+
+include_once "../autoloding.php";
+
+use OOP2\lesclass\coatch;
+use OOP2\Databese;
+
+$connection = databese::ConnexionDataBase();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Liste des Joueurs</title>
@@ -39,7 +44,7 @@ include "../Class/coatch.php";
             color: white;
             text-align: center;
             animation: bg 6s infinite alternate;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s;
         }
 
@@ -51,9 +56,11 @@ include "../Class/coatch.php";
             0% {
                 background: linear-gradient(135deg, #ff416c, #ff4b2b);
             }
+
             50% {
                 background: linear-gradient(135deg, #1d2671, #c33764);
             }
+
             100% {
                 background: linear-gradient(135deg, #11998e, #38ef7d);
             }
@@ -65,40 +72,32 @@ include "../Class/coatch.php";
         }
     </style>
 </head>
+
 <body>
 
-<h1>Liste des coatch</h1>
+    <h1>Liste des coatch</h1>
 
 </body>
+
 </html>
 
-
-
-
 <?php
-
 $newcoatch = new coatch($connection);
 $res = $newcoatch->afficher();
 
-foreach($res as $row){?>
+foreach ($res as $row) { ?>
 
     <div class="container">
-    <div class="card">
-        <h2><?= $row['name'] ?></h2>
-       
-        <button> <a href="deleteCoatch.php?id=<?= $row['id'] ?>">delete</a></button>
-        <p><span class="label">Email:</span><?= $row['email'] ?></p>
-        <p><span class="label">equipe_idA:</span><?= $row['nationalite'] ?></p>
-         <p><span class="label">Nationalité:</span><?= $row['equipe_idA'] ?></p>
+        <div class="card">
+            <h2><?= $row['name'] ?></h2>
+            <button> <a href="deleteCoatch.php?id=<?= $row['id'] ?>">delete</a></button>
+            <p><span class="label">Email:</span><?= $row['email'] ?></p>
+            <p><span class="label">equipe_idA:</span><?= $row['nationalite'] ?></p>
+            <p><span class="label">Nationalité:</span><?= $row['equipe_idA'] ?></p>
+            <p><span class="label">transfirer Coatch :</span></p>
+            <button><a href="../transformecoatch/transformeCOATCHHTML.php?id=<?= $row['id'] ?>">transfirer Coatch : </a></button>
+
+        </div>
     </div>
-</div>
 
 <?php } ?>
-<!-- `name``email``nationalite``equipe_idA` -->
-
-
-
-
-
-
-

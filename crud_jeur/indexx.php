@@ -1,5 +1,13 @@
 <?php
-include_once "../Class/joueur.php";
+namespace OOP2\crud_jeur;
+require '../autoloding.php';
+use OOP2\Databese;
+use OOP2\lesclass\conrat;
+use OOP2\lesclass\joueur;
+
+$connection= databese::ConnexionDataBase();
+
+
 
 if ($connection) {
     echo "oui il y'a conn";
@@ -17,6 +25,5 @@ if (isset($_POST['submit'])) {
 
     $newjoueur = new joueur($connection, null, $name, $email, $role, $nationalite, (int) $equipe_idA, $valeur_marcher, $Salaire);
     $newjoueur->Ajouter();
-    
 }
 header("Location:afficherjoueur.php");

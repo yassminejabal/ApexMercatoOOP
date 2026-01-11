@@ -1,8 +1,10 @@
 <?php
-include "../interface/INTERFACE.PHP";
-// include_once "../databese.php";
-include "../Crud/equipe.php";
-include "../Class/equipee.php";
+namespace OOP2\crud_equipe;
+require '../autoloding.php';
+use OOP2\Databese;
+use OOP2\lesclass\equipe;
+$connection= databese::ConnexionDataBase();
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $name = $_POST['name'];
     $manager_name = $_POST['manager_name'];

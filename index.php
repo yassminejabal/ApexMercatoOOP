@@ -21,6 +21,7 @@
         <option value="">🔽 Sélectionner</option>
         <option name='admin' value="admin">👑 Admin</option>
         <option name='journaliste' value="journaliste">📰 Journaliste</option>
+        <option name='visiteur' value="visiteur">👤 visiteur</option>
       </select>
 
       <button type="submit" class="btn-login">Se connecter</button>
@@ -28,7 +29,7 @@
 
     <!-- Bouton Visiteur -->
 
-    <a class="btn-visitor" href="visiteur.php">👤 Continuer en tant que visiteur</a>
+    <!-- <a class="btn-visitor" href="html/visiteur.php"></a> -->
   </div>
 
   <footer>

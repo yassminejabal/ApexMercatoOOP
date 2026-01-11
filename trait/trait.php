@@ -8,11 +8,11 @@ trait Crd{
         $prepare->execute();
         return $prepare->fetchAll(PDO::FETCH_ASSOC);
     }
-// public function delete($conn,$id,$name){
-//               $stmt =$conn->prepare("DELETE FROM $name WHERE id= :id");
-//              return $stmt->execute([':id' => $id]);
-//     }
-// }
+public function delete($conn,$id,$name){
+              $stmt =$conn->prepare("DELETE FROM $name WHERE id= :id");
+             return $stmt->execute([':id' => $id]);
+    }
+
 }
 
 ?>
