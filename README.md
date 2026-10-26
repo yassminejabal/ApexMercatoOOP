@@ -58,3 +58,8 @@ Application web de gestion d'equipes de football, developpee en PHP oriente obje
 ## Depot
 
 [github.com/yassminejabal/ApexMercatoOOP](https://github.com/yassminejabal/ApexMercatoOOP)
+
+## Architecture
+
+L'application utilise une organisation orientee objet en PHP, avec PDO pour acceder a MySQL. Les dossiers CRUD regroupent les operations de gestion des equipes, des joueurs et des entraineurs.
+
